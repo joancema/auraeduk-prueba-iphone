@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prueba sin señal</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Prueba offline">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>
+	:root { color-scheme: light; }
+	* { box-sizing: border-box; }
+	body { margin: 0; padding: max(16px, env(safe-area-inset-top)) 16px 40px; font: 16px/1.4 -apple-system, system-ui, sans-serif; background: #f3f6f7; color: #17282d; }
+	h1 { font-size: 22px; margin: 4px 0 2px; }
+	h2 { font-size: 16px; margin: 0 0 8px; }
+	p { margin: 6px 0; }
+	.sub { color: #566; font-size: 14px; }
+	.tarjeta { background: #fff; border-radius: 12px; padding: 14px; margin-top: 12px; box-shadow: 0 1px 2px #0001; }
+	.fila { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid #edf0f1; font-size: 15px; }
+	.fila:first-of-type { border-top: 0; }
+	.fila b { text-align: right; font-weight: 600; }
+	.ok { color: #0a7a4f; } .mal { color: #c0262d; } .aviso { color: #a35f00; }
+	button { width: 100%; min-height: 46px; margin-top: 8px; border: 0; border-radius: 10px; font: 600 16px -apple-system, system-ui, sans-serif; background: #0e7c86; color: #fff; }
+	button.sec { background: #e4edef; color: #17282d; }
+	input { width: 100%; min-height: 46px; padding: 8px 12px; border: 1px solid #c8d3d6; border-radius: 10px; font-size: 20px; letter-spacing: 6px; text-align: center; }
+	ol { margin: 6px 0; padding-left: 22px; }
+	li { margin: 5px 0; }
+	#banner { margin-top: 12px; padding: 12px; border-radius: 10px; font-weight: 600; background: #e4edef; }
+	#banner.mal { background: #fde8e8; }
+	#banner.ok { background: #dff5ea; }
+	pre { white-space: pre-wrap; word-break: break-word; font-size: 12px; background: #f3f6f7; padding: 8px; border-radius: 8px; }
+</style>
+</head>
+<body>
+	<h1>Prueba sin señal</h1>
+	<p class="sub">auraeduk · solo datos de prueba, ninguna nota real.</p>
+	<div id="banner">Cargando…</div>
+
+	<section class="tarjeta">
+		<h2>Estado</h2>
+		<div id="estado"></div>
+	</section>
+
+	<section class="tarjeta">
+		<h2>Notas capturadas sin señal</h2>
+		<p class="sub">Simula una nota pendiente de enviar. Debe seguir aquí en cada apertura.</p>
+		<div class="fila"><span>Guardadas</span><b id="nNotas">—</b></div>
+		<button id="btnNota">Guardar una nota de prueba</button>
+	</section>
+
+	<section class="tarjeta">
+		<h2>PIN local</h2>
+		<p class="sub" id="pinAyuda">Se revisa en el teléfono, sin servidor.</p>
+		<input id="pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="••••">
+		<button id="btnPin">Crear PIN</button>
+		<p id="pinResultado"></p>
+	</section>
+
+	<section class="tarjeta">
+		<h2>Cómo hacer la prueba</h2>
+		<ol>
+			<li>En Safari: botón Compartir → <b>Agregar a inicio</b>.</li>
+			<li>Abre la prueba desde el ícono nuevo, con señal. Crea un PIN de 4 dígitos y guarda una nota.</li>
+			<li>Ciérrala del todo: desliza la app hacia arriba en el selector de apps.</li>
+			<li>Activa <b>modo avión</b> y ábrela. Revisa la nota y el PIN.</li>
+			<li>Con modo avión aún activo, apaga y enciende el iPhone. Ábrela otra vez.</li>
+			<li>Déjala sin abrir 8 días o más, usando Safari con normalidad. Ábrela en modo avión.</li>
+		</ol>
+		<p class="sub">Después de los pasos 5 y 6 toca “Copiar resultados” y pégalos en el chat.</p>
+	</section>
+
+	<section class="tarjeta">
+		<h2>Resultados</h2>
+		<button id="btnCopiar">Copiar resultados</button>
+		<p id="copiado" class="sub"></p>
+		<pre id="reporte"></pre>
+		<button id="btnBorrar" class="sec">Borrar la prueba y empezar de nuevo</button>
+	</section>
+
+	<script src="app.js"></script>
+</body>
+</html>
